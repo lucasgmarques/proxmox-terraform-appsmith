@@ -1,4 +1,4 @@
-🖥️ Como Usar
+## 🖥️ Como Usar
 
 1.  Clone este repositório:
 
@@ -25,7 +25,7 @@
 
 	`ansible-galaxy install -r requirements.yml`
 	
-7. Logo após, execute o playbook do Ansible para executar o container do Appsmith:
+7. Logo após, execute o playbook do Ansible para provisionar o container do Appsmith:
 
 	`ansible-playbook -i inventory.ini playbook.yaml`
 
