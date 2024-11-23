@@ -40,7 +40,7 @@ locals {
     ssh_public_key = file("~/.ssh/id_rsa_devops.pub")
   }
 
-  # master specific configuration
+  # vm specific configuration
   vm = {
     # how many nodes?
     count = 1
@@ -54,7 +54,6 @@ locals {
     memory    = 4096
     sockets   = 1
 
-    # 192.168.0.7x and so on...
     network_last_octect = 118
     tags                = "dev"
   }
