@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  vars:
+    pip_install_packages:
+      - name: docker
+    docker_users:
+      - ubuntu
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+  tasks:
+    - name: Ensure Appsmith directory exists
+      ansible.builtin.file:
+        path: /home/ubuntu/appsmith
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Copy compose.yml file the container
+      ansible.builtin.copy:
+        src: ./compose.yml
+        dest: /home/ubuntu/appsmith
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Run `docker compose up`
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/appsmith
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output

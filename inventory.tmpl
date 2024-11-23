@@ -1,0 +1,4 @@
+[all]
+%{ for index in vm.index ~}
+${ vm.vm_name[index] } ansible_host=${ vm.ip_address[index]} ansible_user=${ vm.user[index] }
+%{ endfor ~}
